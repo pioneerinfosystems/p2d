@@ -23,7 +23,7 @@ class Order extends CI_Controller {
 		$this->load->view('commonfiles/footer');
 	}
 
-	public function checkout1 ()
+	public function checkout1()
 	{
 		$this->load->model("order_model");
 		$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
