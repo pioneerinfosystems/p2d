@@ -34,27 +34,27 @@
  <div class="span4 m5">
     <div class="form-group">
         <label for="exampleInputname">Your Name(*)</label>
-        TestName 
+        <?php echo isset($field_values['cust_name']) ?  $field_values['cust_name'] : '-';  ?>
     </div>
 </div>
 
 <div class="span4 m5">
     <div class="form-group">
         <label for="exampleInputEmail1">Email Id(*)</label>
-        test@gmail.com
+        <?php echo isset($field_values['cust_email']) ?  $field_values['cust_email'] : '-';  ?>
     </div>
 </div>
 
 <div class="span4 m5">
     <div class="form-group">
         <label for="exampleInputTitle">Project Title</label>
-        Test project title
+        <?php echo isset($field_values['project_title']) ?  $field_values['project_title'] : '-';  ?>
     </div>
 </div>
 
 <div class="span6 m5">   
     <div class="form-group">
-        <label for="exampleInputservice">Service Needed(*)</label>
+        <label for="exampleInputservice">Service Needed(*)</label
         <div class="select-wrapper">
             <select class="selectorderservice" tabindex="1"  name="service" id="service" disabled>
                 <option value="1" selected>Please select Service </option>
@@ -80,8 +80,20 @@
     <div class="form-group">
         <label for="exampleInputTitle">HTML Type</label>
         <div class="html_type_radio">
-            <input type="radio" class="form-control m0"  name="htmlType" checked value="1" disabled>  Responsive
-            <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>  Non-Responsive
+             <?php 
+               if($field_values['project_title']==1) {
+            ?>
+                <input type="radio" class="form-control m0"  name="htmlType" checked value="1" disabled>  Responsive
+                <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>  Non-Responsive
+            <?php
+               } else {
+            ?>
+                 <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>  Non-Responsive
+                <input type="radio" class="form-control m0"  name="htmlType" checked value="2" disabled>  Non-Responsive
+            <?php
+               }  
+            ?>           
+            
         </div>
     </div>
 </div>    
@@ -89,10 +101,10 @@
 <div class="span12 m5">  
     <div class="form-group">
         <label for="exampleInputFile">Uploaded File name</label>
-        1: File1 name
+        1: <?php echo isset($field_values['image_file1']) ?  $field_values['image_file1'] : '-';  ?>
 
-        2 : File2 name <br/>
-        File Path : www.eeeee.ddd
+        2 : <?php echo isset($field_values['image_file2']) ?  $field_values['image_file2'] : '-';  ?> <br/>
+        File Path : <?php echo isset($field_values['image_url']) ?  $field_values['image_url'] : '-';  ?>
      </div>
 </div>
 <span id="loaderimg" style="display:none"><img alt="" src="content/img/loading.gif"></span>
@@ -149,8 +161,7 @@
    
         <h5>Total</h5>
             <p class="m0">
-            <?php $testamt =800;?>
-                <span id="totalAmount"><?php echo $testamt; ?></span>
+                <span id="totalAmount">$<?php echo isset($field_values['calculated_price']) ?  $field_values['calculated_price'] : '-';  ?></span>
             </p>
 
         <div class="border-bottom"></div>
@@ -164,7 +175,7 @@
             <input type="hidden" name="cn" value="Add special instructions to the seller:">
             <input type="hidden" name="no_shipping" value="1">
             <input type="hidden" name="rm" value="1">
-            <input type="hidden" name="amount" value="<?php echo $testamt; ?>">
+            <input type="hidden" name="amount" value="<?php echo $field_values['calculated_price']; ?>">
             <input type="hidden" name="item_name" value="PSD to WP Service">
             <input type="hidden" name="return" value="http://www.psd2html4u.com">
             <input type="hidden" name="cancel_return" value="http://www.psd2html4u.com">
