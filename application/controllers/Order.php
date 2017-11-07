@@ -6,6 +6,7 @@ class Order extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model("order_model");
+        $this->load->library(array('General_functions'));
     }
 	
 	public function index()
@@ -18,7 +19,7 @@ class Order extends CI_Controller {
 		$this->load->view('commonfiles/footer');
 	}
 
-	public function checkout()
+	/*public function checkout()
 	{
 		$this->load->model("order_model");
 		$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
@@ -26,7 +27,7 @@ class Order extends CI_Controller {
 		$this->load->view('commonfiles/header');
 		$this->load->view('checkout',$data);
 		$this->load->view('commonfiles/footer');
-	}
+	}*/
 
 	public function get_services_info() {
 		$service_id    = $this->input->post('service_id');
@@ -34,7 +35,7 @@ class Order extends CI_Controller {
 		echo json_encode($response_data); exit;
 	}
 
-	public function place_order() {
+	public function checkout() {
 		ini_set('display_errors', 1);
 		$order_data['input_data'] = $this->input->post();
 		$order_data['file_data'] = $_FILES;
