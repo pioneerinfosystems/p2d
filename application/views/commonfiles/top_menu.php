@@ -24,6 +24,8 @@ $service_array   = array(
             <ul style="margin-bottom:0px;">
               <li><i class="fa fa-skype envlope_icon" aria-hidden="true"></i> PSD2HTML4U </li>
               <li><i class="envlope_icon fa fa-envelope" aria-hidden="true"></i> <a href="mailto:info@psd2html4u.com" > EMAIL </a></li>
+              <li><i></i> USA/Canada Toll Free : <b>+1-866-292-4194</b></li>
+
             </ul>
           </div>
         </div>

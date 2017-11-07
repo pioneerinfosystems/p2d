@@ -358,7 +358,7 @@
 </dl>
 </div>
 <h5>USA</h5>
-<p>7840 Moon Road, Apt #424, <br>Columbus, Georgia -31909, USA.<br> Phone (Toll Free): +1-855-774-6867</p>
+<p>7840 Moon Road, Apt #424, <br>Columbus, Georgia -31909, USA.<br> Phone (Toll Free): +1-866-292-4194</p>
 
 <h5>INDIA</h5>
 <p>214, P N Kothari Industrial Estate , <br> L B S Marg, Bhandup (W), Mumbai – 400 078 <br>Phone: +91 773-800-3412</p>

@@ -60,7 +60,7 @@
 							</h6>
 							<ul>
 								<li class="address">Address1: <span>7840 Moon Road, Columbus, Georgia, USA.</span></li>
-								<li class="phone">Phone (Toll Free USA): <span>+1-855-774-6867</span></li>
+								<li class="phone">Phone (Toll Free USA): <span>+1-866-292-4194</span></li>
 
 								<li class="address">Address2: <span>L B S Marg, Bhandup (W), Mumbai – 400 078 , India</span></li>
 								<li class="phone">Phone: <span>+91 773 800 3412</span></li>

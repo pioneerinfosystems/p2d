@@ -19,46 +19,7 @@
               </div>
             </div>
           </div>
-          <div class="row-fluid row-dynamic-el " style="">
-            <div class="container">
-              <div class="row-fluid">
-                <div class="divider__"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row-fluid row-dynamic-el " style="">
-            <div class="container">
-              <div class="row-fluid">
-                <h1 class="big_inn_title">How does PSD2HTML Work 4 U</h1>
-                <ul class="psdwork4u">
-                  <li>
-                    <img src="content/img/psd_home_img.png">
-                  </li>
-                  <li>
-                    <img src="content/img/arrow_forwd.png">
-                  </li>
-                  <li>
-                    <img src="content/img/htmlcssjs.png">
-                  </li>
-                  <li>
-                    <img src="content/img/arrow_forwd.png">
-                  </li>
-                  <li>
-                    <img src="content/img/downloadbox.png">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="row-fluid row-dynamic-el " style="">
-            <div class="container">
-              <div class="row-fluid">
-                <div class="divider__"></div>
-              </div>
-            </div>
-          </div>
-
+          
           <div class="row-fluid row-dynamic-el">
             <h1 class="big_inn_title">Our Services</h1>
             <div class="container">
@@ -188,12 +149,12 @@
 
                     <dd class="with_icon">
                       <h4 class="with_icon">
-                        <a href="#">100% Satisfaction guarantee</a>
+                        <a href="#">Offer's right solution</a>
                       </h4>
                     </dd>
 
                     <dd>
-                      Our expertise team always makes sure that all your requirements are fulfilled without any issue. Every customer will be left with 100% satisfaction which is guaranteed, we never let down our customers.
+                      Our expertise team always analyse requirements of customer and Offer a solution that meets their budget.
                     </dd>
                   </dl>
                 </div>

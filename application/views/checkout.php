@@ -21,9 +21,7 @@
 <div class="span8 contact_frm">
 <div class="header">
 <dl class="dl-horizontal">
-<!-- <dt>
-<i class="moon-pen-5"></i>
-</dt> -->
+
 <dd style="margin-left:55px !important; margin-top:10px;">
 <h2>You are just one step away from placing your order.</h2>
 </dd>
@@ -33,7 +31,6 @@
 <div class="row-fluid">
 
 <div class="span12">
-<!-- <form name="contactForm" id="contactform" method="POST" action=""> -->
  <div class="span4 m5">
     <div class="form-group">
         <label for="exampleInputname">Your Name(*)</label>
@@ -152,17 +149,33 @@
    
         <h5>Total</h5>
             <p class="m0">
-                <span id="totalAmount">$0</span>
+            <?php $testamt =800;?>
+                <span id="totalAmount"><?php echo $testamt; ?></span>
             </p>
 
         <div class="border-bottom"></div>
-        
-        <div class="contact_adr">
-           
+          <div class="contact_adr">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="22RTCPY7A63QC">
+            <input type="hidden" name="lc" value="IN">
+            <input type="hidden" name="button_subtype" value="services">
+            <input type="hidden" name="no_note" value="0">
+            <input type="hidden" name="cn" value="Add special instructions to the seller:">
+            <input type="hidden" name="no_shipping" value="1">
+            <input type="hidden" name="rm" value="1">
+            <input type="hidden" name="amount" value="<?php echo $testamt; ?>">
+            <input type="hidden" name="item_name" value="PSD to WP Service">
+            <input type="hidden" name="return" value="http://www.psd2html4u.com">
+            <input type="hidden" name="cancel_return" value="http://www.psd2html4u.com">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
+            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+          </form>
         </div>
 </div>
 </div>
-<!-- </form> -->
 </div>
 </div>
 </div>
@@ -175,58 +188,3 @@
 <!-- Social Profiles -->
 <!-- Footer -->
 </div>
-<!-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> -->
-
-  <!-- Saved buttons use the "secure click" command -->
-  <!-- <input type="hidden" name="cmd" value="_s-xclick"> -->
-
-  <!-- Saved buttons are identified by their button IDs -->
- <!--  <input type="hidden" name="hosted_button_id" value="ASWWNF3CM4KAS">
-  <input type="hidden" id="itemPrice" name="item_price" value="50">
-  <input type="hidden" name="currency_code" value="USD">
-<input type=”hidden” name=”amount” value=”10.00″>
-<input type=”hidden” name=”currency_code” value=”USD”> -->
-  <!-- Saved buttons display an appropriate button image. -->
- <!--  <input type="image" name="submit"
-    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-    alt="PayPal - The safer, easier way to pay online">
-  <img alt="" width="1" height="1"
-    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
-
-</form> -->
-
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="7G6K5NM7X4FPW">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
-
-
-<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="RWS7DM4VTRZT4">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form> -->
-
-
-<!-- <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="ASWWNF3CM4KAS">
-<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form> -->
-
-<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="RWS7DM4VTRZT4">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-</form> -->
-
-
-<!-- <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"> </script> -->
