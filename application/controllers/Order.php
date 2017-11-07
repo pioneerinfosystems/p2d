@@ -50,7 +50,7 @@ class Order extends CI_Controller {
 			$this->load->view('checkout',$data);
 			$this->load->view('commonfiles/footer');
 		} else {
-			redirect(base_url()."order");
+			redirect(base_url()."index.php/order");
 
 			/*$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
 			$data['service_needed'] = $this->order_model->get_services();
