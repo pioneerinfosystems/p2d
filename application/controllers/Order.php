@@ -22,6 +22,17 @@ class Order extends CI_Controller {
 		$this->load->view('checkout',$data);
 		$this->load->view('commonfiles/footer');
 	}
+
+	public function checkout1 ()
+	{
+		$this->load->model("order_model");
+		$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
+		$data['service_needed'] = $this->order_model->get_services();
+		$this->load->view('commonfiles/header');
+		$this->load->view('checkout',$data);
+		$this->load->view('commonfiles/footer');
+	}
+
 	
 
 }
