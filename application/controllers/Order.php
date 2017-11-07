@@ -40,10 +40,10 @@ class Order extends CI_Controller {
 		$order_data['file_data'] = $_FILES;
 		$response_data = $this->order_model->place_order($order_data);
 		if($response_data['status']==1){
-			$data['top_menu']       = $this->load->view('commonfiles/top_menu','', TRUE);
-			$data['service_needed'] = $this->order_model->get_services();
-			$data['message']        = $response_data['message'];
-			$data['field_values']   = $response_data['field_values'];
+			$data['top_menu']        = $this->load->view('commonfiles/top_menu','', TRUE);
+			$data['service_needed']  = $this->order_model->get_services();
+			$data['message']         = $response_data['message'];
+			$data['field_values']    = $response_data['field_values'];		
 
 			$this->load->view('commonfiles/header');
 			$this->load->view('checkout',$data);

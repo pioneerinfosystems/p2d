@@ -102,24 +102,14 @@
         <input id="uploadfile1" name="row_files" class="w236" placeholder="Choose File" disabled="disabled" />
         <div class="fileUpload btn btn-primary">
             <span>Upload</span>
-            <input id="uploadBtn1" type="file" class="upload" />
+            <input id="uploadBtn1" name="row_files" id="row_files" type="file" class="upload" />
         </div> 
         
         <input id="uploadfile2" name="row_files1" class="w236" placeholder="Choose File" disabled="disabled" />
         <div class="fileUpload btn m0 btn-primary">
             <span>Upload</span>
-            <input id="uploadBtn2" type="file" class="upload" />
+            <input id="uploadBtn2" name="row_files1" id="row_files1" type="file" class="upload" />
         </div>
-        <!-- <input type="file" name="row_files" id="row_files">
-        <input type="hidden" name="row_files_text" id="row_files_text">
-        <div class="btn btn-primary">
-            <a class="row_files_btn">upload</a>
-        </div>
-        <input type="file" name="row_files1" id="row_files1">
-        <input type="hidden" name="row_files_text1" id="row_files_text1">
-        <div class="btn btn-primary">
-            <a class="row_files_btn1">upload</a>
-        </div> -->
         <input type="text" class="form-control w90" name="pathToFile" id="pathToFile" placeholder="Paste URL (Path)">
      </div>
 </div>
@@ -462,13 +452,13 @@ $("#messContact").css('border', '1px solid #dbdbdb');
 });*/
 });
 
-/*document.getElementById("uploadBtn1").onchange = function () {
+document.getElementById("uploadBtn1").onchange = function () {
     document.getElementById("uploadfile1").value = this.value;
 };
 
 document.getElementById("uploadBtn2").onchange = function () {
     document.getElementById("uploadfile2").value = this.value;
-};*/
+};
 </script>
 
 

@@ -57,9 +57,17 @@
         <label for="exampleInputservice">Service Needed(*)</label
         <div class="select-wrapper">
             <select class="selectorderservice" tabindex="1"  name="service" id="service" disabled>
-                <option value="1" selected>Please select Service </option>
-                
-               
+                <?php //echo '<pre>';print_r($service_needed);echo '</pre>';
+                    foreach ($service_needed as $key => $value) {
+                        if ($value['id']==$field_values['service_id']) {
+                            $service_info = $this->order_model->get_services_info($field_values['service_id']);                            
+                            $turnarount_time = $service_info['turnaround_time'];
+                            ?>
+                            <option value="<?php echo $value['id']; ?>" selected><?php echo $value['service_name']; ?></option>
+                            <?php
+                        }
+                    }
+                ?>
             </select>
         </div>
     </div>
@@ -70,7 +78,7 @@
     <label for="exampleInputservice">Homepage + No of pages</label>
         <div class="select-wrapper">
             <select  tabindex="1" class="selectorderpagesize"  name="noOfPages" id="noOfPages" disabled>
-                <option value="5" selected>5</option>
+                <option value="5" selected><?php echo $field_values['no_of_pages']; ?></option>
             </select>
         </div>
     </div>
@@ -88,7 +96,7 @@
             <?php
                } else {
             ?>
-                 <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>  Non-Responsive
+                 <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>Responsive
                 <input type="radio" class="form-control m0"  name="htmlType" checked value="2" disabled>  Non-Responsive
             <?php
                }  
@@ -140,14 +148,14 @@
       
         <h5>Inner Pages</h5>
              <p class="m0">
-                <span id="orderPages">0</span>
+                <span id="orderPages"><?php echo isset($field_values['no_of_pages']) ?  $field_values['no_of_pages'] : '-';  ?></span>
             </p>
         
         <div class="border-bottom"></div>
     
         <h5>Turnaround Time</h5>
              <p class="m0">
-                <span id="turnaroundTime">2 to 3 days</span>
+                <span id="turnaroundTime"><?php echo $turnarount_time; ?></span>
             </p>
 
         <div class="border-bottom"></div>
