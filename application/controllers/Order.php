@@ -50,13 +50,14 @@ class Order extends CI_Controller {
 			$this->load->view('checkout',$data);
 			$this->load->view('commonfiles/footer');
 		} else {
+			redirect(base_url()."order");
 
-			$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
+			/*$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
 			$data['service_needed'] = $this->order_model->get_services();
 			$data['message'] = $response_data['message'];
 			$this->load->view('commonfiles/header');
 			$this->load->view('order_now',$data);
-			$this->load->view('commonfiles/footer');
+			$this->load->view('commonfiles/footer');*/
 		}		
 		
 	}
