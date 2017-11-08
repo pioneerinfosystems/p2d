@@ -1,6 +1,8 @@
 
 <body  class="page  page-template-default header_2">
-<?php echo $top_menu; ?>
+<?php echo $top_menu; 
+
+?>
 <div class="top_wrapper">
 <div class="header_page">
 <div class="container">
@@ -21,7 +23,6 @@
 <div class="span8 contact_frm">
 <div class="header">
 <dl class="dl-horizontal">
-
 <dd style="margin-left:55px !important; margin-top:10px;">
 <h2>You are just one step away from placing your order.</h2>
 </dd>
@@ -54,65 +55,34 @@
 
 <div class="span6 m5">   
     <div class="form-group">
-        <label for="exampleInputservice">Service Needed(*)</label
-        <div class="select-wrapper">
-            <select class="selectorderservice" tabindex="1"  name="service" id="service" disabled>
-                <?php //echo '<pre>';print_r($service_needed);echo '</pre>';
-                    foreach ($service_needed as $key => $value) {
-                        if ($value['id']==$field_values['service_id']) {
-                            $service_info = $this->order_model->get_services_info($field_values['service_id']);                            
-                            $turnarount_time = $service_info['turnaround_time'];
-                            ?>
-                            <option value="<?php echo $value['id']; ?>" selected><?php echo $value['service_name']; ?></option>
-                            <?php
-                        }
-                    }
+        <label for="exampleInputservice">Service Needed</label>
+                <?php  
+                            if(isset($field_values['service_id']) && $field_values['service_id'] >0) {
+                            $service_info = $this->order_model->get_services_info($field_values['service_id']);
+                            $turnarount_time = ($service_info['turnaround_time']) ? $service_info['turnaround_time'] : 'NA';
+                            echo isset($service_info['service_name']) ?  $service_info['service_name'] : 'NA';
+                            }
+
                 ?>
-            </select>
-        </div>
     </div>
 </div>
 
 <div class="span6 m5 pull-right">
     <div class="form-group">
-    <label for="exampleInputservice">Homepage + No of pages</label>
-        <div class="select-wrapper">
-            <select  tabindex="1" class="selectorderpagesize"  name="noOfPages" id="noOfPages" disabled>
-                <option value="5" selected><?php echo $field_values['no_of_pages']; ?></option>
-            </select>
-        </div>
+    <label for="exampleInputservice">No of pages</label>
+            <?php echo isset($service_info['no_of_pages']) ?  $service_info['no_of_pages'] : '0'; ?>
     </div>
 </div>
 
-<div class="span12 m5">  
-    <div class="form-group">
-        <label for="exampleInputTitle">HTML Type</label>
-        <div class="html_type_radio">
-             <?php 
-               if($field_values['project_title']==1) {
-            ?>
-                <input type="radio" class="form-control m0"  name="htmlType" checked value="1" disabled>  Responsive
-                <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>  Non-Responsive
-            <?php
-               } else {
-            ?>
-                 <input type="radio" class="form-control m0"  name="htmlType" value="2" disabled>Responsive
-                <input type="radio" class="form-control m0"  name="htmlType" checked value="2" disabled>  Non-Responsive
-            <?php
-               }  
-            ?>           
-            
-        </div>
-    </div>
-</div>    
+
 
 <div class="span12 m5">  
     <div class="form-group">
         <label for="exampleInputFile">Uploaded File name</label>
-        1: <?php echo isset($field_values['image_file1']) ?  $field_values['image_file1'] : '-';  ?>
+        1: <?php echo (isset($field_values['image_file1']) && !empty($service_info['image_file1'])) ?  $field_values['image_file1'] : 'NA';  ?>
 
-        2 : <?php echo isset($field_values['image_file2']) ?  $field_values['image_file2'] : '-';  ?> <br/>
-        File Path : <?php echo isset($field_values['image_url']) ?  $field_values['image_url'] : '-';  ?>
+        2 : <?php echo (isset($field_values['image_file2']) && !empty($service_info['image_file2'])) ?  $field_values['image_file2'] : 'NA';  ?> <br/>
+        File Path : <?php echo (isset($field_values['image_url']) && !empty($field_values['image_url'])) ?  $field_values['image_url'] : 'NA';  ?>
      </div>
 </div>
 <span id="loaderimg" style="display:none"><img alt="" src="content/img/loading.gif"></span>

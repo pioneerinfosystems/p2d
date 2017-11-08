@@ -19,15 +19,6 @@ class Order extends CI_Controller {
 		$this->load->view('commonfiles/footer');
 	}
 
-	/*public function checkout()
-	{
-		$this->load->model("order_model");
-		$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
-		$data['service_needed'] = $this->order_model->get_services();
-		$this->load->view('commonfiles/header');
-		$this->load->view('checkout',$data);
-		$this->load->view('commonfiles/footer');
-	}*/
 
 	public function get_services_info() {
 		$service_id    = $this->input->post('service_id');
@@ -50,14 +41,9 @@ class Order extends CI_Controller {
 			$this->load->view('checkout',$data);
 			$this->load->view('commonfiles/footer');
 		} else {
-			redirect(base_url()."index.php/order");
-
-			/*$data['top_menu'] = $this->load->view('commonfiles/top_menu','', TRUE);
-			$data['service_needed'] = $this->order_model->get_services();
-			$data['message'] = $response_data['message'];
-			$this->load->view('commonfiles/header');
-			$this->load->view('order_now',$data);
-			$this->load->view('commonfiles/footer');*/
+			
+			redirect(base_url()."order-now");
+	
 		}		
 		
 	}

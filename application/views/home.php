@@ -6,7 +6,7 @@
     <!-- .header -->        
     <section class="marque">
         <div class="marque_1">
-          <marquee>  <blockquote> Get 20% discount on first order</blockquote></marquee> 
+          <marquee>  <blockquote> Get 10% discount on order - offer is valid till 30st Nov 2017 </blockquote></marquee> 
         </div>  
     </section>
     <section id="content" class="page-dynamic_template-home sequentialchildren  p0">

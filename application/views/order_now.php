@@ -32,7 +32,7 @@
 <div class="row-fluid">
 
 <div class="span12">
-<form name="contactForm" id="contactform" method="POST" action="<?php echo base_url(); ?>index.php/order/place_order" enctype="multipart/form-data">
+<form name="contactForm" id="contactform" method="POST" action="<?php echo base_url(); ?>checkout" enctype="multipart/form-data">
  <div class="span4 m5">
     <div class="form-group">
         <label for="exampleInputname">Your Name(*)</label>
@@ -78,23 +78,13 @@
     <label for="exampleInputservice">Homepage + No of pages</label>
         <div class="select-wrapper">
             <select  tabindex="1" class="selectorderpagesize"  name="noOfPages" id="noOfPages">
-                <?php for($i=1; $i<51;$i++) { ?>
+                <?php for($i=0; $i<51;$i++) { ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                 <?php } ?>
             </select>
         </div>
     </div>
 </div>
-
-<div class="span12 m5">  
-    <div class="form-group">
-        <label for="exampleInputTitle">HTML Type</label>
-        <div class="html_type_radio">
-            <input type="radio" class="form-control m0"  name="htmlType" checked value="1">  Responsive
-            <input type="radio" class="form-control m0"  name="htmlType" value="2">  Non-Responsive
-        </div>
-    </div>
-</div>    
 
 <div class="span12 m5">  
     <div class="form-group">
@@ -140,20 +130,20 @@
      <div class="order_summery span12">
         <h5>Selected Package</h5>
             <p class="m0">
-                <span id="selectedPackage">PSD to HTML</span>
+                <span id="selectedPackage">NA</span>
             </p>
         <div class="border-bottom"></div>
       
         <h5>Inner Pages</h5>
              <p class="m0">
-                <span id="orderPages">1</span>
+                <span id="orderPages">NA</span>
             </p>
         
         <div class="border-bottom"></div>
     
         <h5>Turnaround Time</h5>
              <p class="m0">
-                <span id="turnaroundTime">2 to 3 days</span>
+                <span id="turnaroundTime">NA</span>
             </p>
 
         <div class="border-bottom"></div>
@@ -194,13 +184,18 @@
 <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"> </script>
 <script type="text/javascript">
 $(document).ready(function() {
+   
+    function ValidateEmail(email) {
+       var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+       return expr.test(email);
+   };
+
     $("#place_order").on('click' ,function () {
         var customerName = $('#customerName').val();
         var eMail        = $('#eMail').val();
         var service      = $('#service').val();
         var projecTitle  = $('#projecTitle').val();
         var noOfPages    = $('#noOfPages').val();
-        var htmlType     = $('#htmlType').val();
         var pathToFile   = $('#pathToFile').val();
         var error        = false;
         $(".err-c-name,.err-c-name-text").css({"border":"1px solid #c4c4c4","color":"#333334"});
@@ -215,7 +210,10 @@ $(document).ready(function() {
             //$(".err-email-id").append("<span err-email-id-text>Your Name Please</span>");
             $(".err-email-id,.err-email-id-text").css({"border":"1px solid red","color":"red"});
             error = true;
-        }
+        }else if (!ValidateEmail(eMail)) {
+           $(".err-email-id,.err-email-id-text").css({"border":"1px solid red","color":"red"});
+           error = true;
+       }
         if ( typeof service =="undefined" || service == "0" ) {
             //$(".err-service").append("<span err-service-text>Your Name Please</span>");
             $(".err-service,.err-service-text").css({"border":"1px solid red","color":"red"});
@@ -228,58 +226,19 @@ $(document).ready(function() {
 
         $( "#contactform" ).submit();
 
-        /*var form_data = new FormData();                  
-        var file_data = $("#row_files").prop('files')[0]; 
-        var file_data1 = $("#row_files1").prop('files')[0]; 
-        form_data.append('file', file_data);
-        form_data.append('file1', file_data1);
-        form_data.append('customerName', customerName);
-        form_data.append('eMail', eMail);
-        form_data.append('service', service);
-        form_data.append('projecTitle', projecTitle);
-        form_data.append('noOfPages', noOfPages);
-        form_data.append('htmlType', htmlType);
-        form_data.append('pathToFile', pathToFile);
-
-        $.ajax({
-            url: '<?php echo base_url(); ?>index.php/order/place_order',
-            type: 'post',
-            contentType: "application/x-www-form-urlencoded",
-            cache: false,
-            processData: false,
-            data: form_data,
-            success: function (data) {
-                if (data == 1) {
-                    $("#loaderimg").hide();
-                    $('#successmsg').text("Enquiry submitted successfully.").show();
-                    $('#successmsg').fadeIn('5000', function() {
-                    $('#successmsg').fadeOut(10000);
-                        window.location.replace("thank-you");
-                    });
-                    $("#contactform").find("input[type=text],input[type=file],textarea").val("");
-                    $("#country").val();  
-                    $("#service").val();
-                }else{
-                    $("#errormsg").text("Something went wrong : Please resubmit the form.").show();
-                    $('#errormsg').fadeIn('5000', function() {
-                        $('#errormsg').fadeOut(10000);
-                    });
-                }
-                $("#loaderimg").hide();
-                $("#submit").prop('disabled', false);
-            }
-        });*/
-
         return false;
     });
     
     $("#service").change(function(){
         $("#homepage_price").val("");
         $("#innerpage_price").val("");
-        $("#turnaroundTime").text("");
+        $("#selectedPackage").text("NA");
+        $("#orderPages").text("0");
+        $("#turnaroundTime").text("NA");
+        $("#descountAmount").text("$0");
         $(".err-service,.err-service-text").css({"border":"1px solid #c4c4c4","color":"#333334"});
         if($(this).val()==0) {
-            $("#noOfPages").val(1);
+            $("#noOfPages").val(0);
             $("#totalAmount").text("$0");
             $(".err-service,.err-service-text").css({"border":"1px solid red","color":"red"});
             return false;
@@ -294,11 +253,14 @@ $(document).ready(function() {
             data: postdata,
             success: function (data) {
                 var data = JSON.parse(data);
+                var selected_package = $("#service option:selected").text();
+                $("#selectedPackage").text(selected_package);
                 $("#homepage_price").val(data.homepage_price);
                 $("#innerpage_price").val(data.innerpage_price);
                 $("#turnaroundTime").text(data.turnaround_time);
                 var order_total  = parseInt(data.homepage_price)+(parseInt(data.innerpage_price)*parseInt($("#noOfPages").val()));
-                console.log(order_total);
+                var descount_amount  =  order_total - ((order_total * <?php echo CHARGE_PERCENTAGE; ?>)/100);
+                $("#descountAmount").text("$"+Math.floor(descount_amount));
                 $("#order_total").val(order_total);
                 $("#totalAmount").text("$"+order_total);
             }
@@ -315,6 +277,8 @@ $(document).ready(function() {
         var homepage_price = $("#homepage_price").val();
         var innerpage_price = $("#innerpage_price").val();
         var order_total  = parseInt(homepage_price)+(parseInt(innerpage_price)*parseInt($(this).val()));
+        var descount_amount  =  order_total - ((order_total * <?php echo CHARGE_PERCENTAGE; ?>)/100);
+        $("#descountAmount").text("$"+Math.floor(descount_amount));
         $("#order_total").val(order_total);
         $("#totalAmount").text("$"+order_total);
         $("#orderPages").text(parseInt($(this).val()));
@@ -359,97 +323,6 @@ $(document).ready(function() {
          }); 
     });
 
-
-
-/*$('#submit').on('click',function() {
-
-var formData = new FormData();
-formData.append("customername", $("#customername").val());
-formData.append("email", $("#email").val());
-formData.append("service", $("#service").val());
-formData.append("country", $("#country").val());
-formData.append("messContact", $("#messContact").val());
-formData.append("pathtofile", $("#pathtofile").val());
-formData.append('uploadfile1', $('input[type=file]')[0].files[0]);
-formData.append('uploadfile2', $('input[type=file]')[1].files[0]);
-
-var error = 0;
-$("#customername").css('border', '1px solid #dbdbdb');
-$("#email").css('border', '1px solid #dbdbdb');
-$("#service").css('border', '1px solid #dbdbdb');
-$("#country").css('border', '1px solid #dbdbdb');
-$("#messContact").css('border', '1px solid #dbdbdb');
-                  if ($.trim($("#customername").val()) == "") {
-                                    $("#customername").css('border', '1px solid red');                      
-                                    error = 1;
-                                 }
-                                 var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;    
-                                  if ($.trim($("#email").val()) == "" || !emailPattern.test($("#email").val())) {
-                                    $("#email").css('border', '1px solid red');                     
-                                    error = 1;
-                                 }
-                                  if ($("#service").val() == "") {
-                                    $("#service").css('border', '1px solid red');                       
-                                    error = 1;
-                                 }
-                                 
-                                   if ($("#messContact").val() == "") {
-                                    $("#messContact").css('border', '1px solid red');                       
-                                    error = 1;
-                                 }
-                           if (error == 1) {
-                        $('#errormsg').text("Please fill all mandatory fields").show();
-                            
-                            $('#errormsg').fadeIn('5000', function() {
-                                $('#errormsg').fadeOut(10000);
-                            });
-                        return false;
-                    }
-
-                    if (error == 0) {
-                        $("#submit").prop('disabled', true);
-                        $("#loaderimg").show();
-                        $.ajax({
-                            url: '<?php echo base_url(); ?>home/submit_contact_form',
-                            type: 'post',
-                            mimeType: "multipart/form-data",
-                            contentType: false,
-                            cache: false,
-                            processData: false,
-                            data: formData,
-                            success: function (data) {
-                                if (data == 1) {
-                                   $("#loaderimg").hide();
-                                   $('#successmsg').text("Enquiry submitted successfully.").show();
-                                   $('#successmsg').fadeIn('5000', function() {
-                                   $('#successmsg').fadeOut(10000);
-                                   window.location.replace("thank-you");
-                            });
-                                     
-                                    $("#contactform").find("input[type=text],input[type=file],textarea").val("");
-                                    $("#country").val();  
-                                    $("#service").val();  
-                                }else{
-                                     
-                                     $("#errormsg").text("Something went wrong : Please resubmit the form.").show();
-                                     $('#errormsg').fadeIn('5000', function() {
-                                    $('#errormsg').fadeOut(10000);
-                            });
-                                }
-                                $("#loaderimg").hide();
-                                $("#submit").prop('disabled', false);
-
-
-
-                            }
-
-
-                        });
-
-
-                    } 
-                    
-});*/
 });
 
 document.getElementById("uploadBtn1").onchange = function () {

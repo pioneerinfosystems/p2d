@@ -22,17 +22,20 @@ class Order_model extends CI_model {
 
     function get_services_info($service_id){
         $result_data = array();
-        $this->db->select('service_id,homepage_price,innerpage_price,turnaround_time');
-        $this->db->where('service_id', $service_id);
-        $this->db->where('active', 1);
-        $result = $this->db->get("tbl_pth_service_price")->result_array();
+        $this->db->select('a.service_id,a.homepage_price,a.innerpage_price,a.turnaround_time,b.service_name,b.payment_type');
+        $this->db->join('tbl_pth_services as b','b.id = a.service_id');
+        $this->db->where('a.service_id', $service_id);
+        $this->db->where('a.active', 1);
+        $result = $this->db->get("tbl_pth_service_price as a")->result_array();
         if($result) {
             foreach ($result as $key => $value) {
                 $result_data['service_id']      =  $value['service_id'];
                 $result_data['homepage_price']  =  $value['homepage_price'];
                 $result_data['innerpage_price'] =  $value['innerpage_price'];
                 $result_data['turnaround_time'] =  $value['turnaround_time'];
-            }
+                $result_data['service_name']    =  $value['service_name'];
+                $result_data['payment_type']    =  $value['payment_type'];
+                }
         }
         return $result_data;
     }
@@ -69,7 +72,6 @@ class Order_model extends CI_model {
             $insert_data["cust_name"]                = $insert_values["customerName"];
             $insert_data["cust_email"]               = $insert_values["eMail"];
             $insert_data["project_title"]            = $insert_values["projecTitle"];
-            $insert_data["html_type"]                = $insert_values["htmlType"];
             $insert_data["no_of_pages"]              = $insert_values["noOfPages"];
             $insert_data["image_file1"]              = $file_values["row_files"]["name"];
             $insert_data["image_file2"]              = $file_values["row_files1"]["name"];
