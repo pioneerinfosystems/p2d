@@ -68,13 +68,38 @@ class Order_model extends CI_model {
             }
             $insert_values = $order_data["input_data"];
             $file_values   = $order_data["file_data"];
+            $filename_new  = '';
+            $filename_new1 = '';
+            if (!empty($file_values)) {                
+                $uploads_dir   = APPPATH . '../public/upload/temp';
+                if(!empty($file_values['row_files'])){
+                    $filename      = $file_values['row_files']['name'];
+                    $extestion     = explode(".",$filename);
+                    $filename_new = $extestion[0]."_".date('m-d-Y_H:i:s').".".$extestion[1];
+                    $tmp_name     = $_FILES["row_files"]["tmp_name"];
+                    move_uploaded_file($tmp_name, "$uploads_dir/$filename_new");
+                    
+                }
+                if(!empty($file_values['row_files1'])){                    
+                    $filename1     = $file_values['row_files1']['name'];
+                    $extestion1    = explode(".",$filename1);
+                    $filename_new1 = $extestion1[0]."_".date('m-d-Y_H:i:s').".".$extestion1[1];
+                    $tmp_name1     = $_FILES["row_files1"]["tmp_name"];
+                    move_uploaded_file($tmp_name1, "$uploads_dir/$filename_new1");
+                }
+                /*$ext_type    = array('gif','jpg','jpe','jpeg','png',"zip");
+                if (in_array($extestion[1], $ext_type)) {
+                } else {
+
+                }*/
+            }           
 
             $insert_data["cust_name"]                = $insert_values["customerName"];
             $insert_data["cust_email"]               = $insert_values["eMail"];
             $insert_data["project_title"]            = $insert_values["projecTitle"];
             $insert_data["no_of_pages"]              = $insert_values["noOfPages"];
-            $insert_data["image_file1"]              = $file_values["row_files"]["name"];
-            $insert_data["image_file2"]              = $file_values["row_files1"]["name"];
+            $insert_data["image_file1"]              = $filename_new;
+            $insert_data["image_file2"]              = $filename_new1;
             $insert_data["image_url"]                = $insert_values["pathToFile"];
             $insert_data["calculated_price"]         = $insert_values["order_total"];
             $insert_data["descount_percent_applied"] = $insert_values["order_total"];
@@ -82,14 +107,19 @@ class Order_model extends CI_model {
             $insert_data["created_date"]             = date("Y-m-d H:i:s");
             $insert_data["created_ip"]               = $this->input->ip_address();
             $insert_data["created_agent"]            = $_SERVER['HTTP_USER_AGENT'];
-            $insert_data["active"]                   = 1;
+            $insert_data["active"]                   = 0;
 
             $this->db->insert('tbl_pth_order',$insert_data);
+            $id = $this->db->insert_id();
 
-            $id                            = $this->db->insert_id();
-            $response_data['status']       = 1;
-            $response_data['message']      = "order place successfully.";
-            $response_data['field_values'] = $insert_data;
+            if($id){
+                $response_data['status']       = 1;
+                $response_data['message']      = "order place successfully.";
+                $response_data['field_values'] = $insert_data;
+            } else {
+                $response_data['status']       = 0;
+                $response_data['message']      = "some thing went wrong while placing order.";
+            }            
             
             return $response_data;
         }   

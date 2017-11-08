@@ -29,7 +29,7 @@ class Order extends CI_Controller {
 	public function checkout() {
 		ini_set('display_errors', 1);
 		$order_data['input_data'] = $this->input->post();
-		$order_data['file_data'] = $_FILES;
+		$order_data['file_data']  = $_FILES;
 		$response_data = $this->order_model->place_order($order_data);
 		if($response_data['status']==1){
 			$data['top_menu']        = $this->load->view('commonfiles/top_menu','', TRUE);
